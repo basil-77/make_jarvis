@@ -8,7 +8,7 @@ LLM: Llama3 8B Instruct (Meta-Llama-3-8B-Instruct.Q5_K_M, https://huggingface.co
 Text-To-Speach: command tool 'voice.exe' (https://www.elifulkerson.com/projects/commandline-text-to-speech.php) instead of TTS (because of using TTS or any local models takes a very lot of time). This tool uses windows system speach synthesis and worsk very fast (but with not very good quality).
 
 ## Демо:  
-[![Watch the video](https://i.stack.imgur.com/Vp2cE.png)](https://youtu.be/a9Zz6KInVIc)
+[Demo](https://youtu.be/a9Zz6KInVIc)
 
 ### Комментарии.
 Работа очень сырая, до финального вида нужно еще очено много дорабатывать, но, увы, дедлайн.  
