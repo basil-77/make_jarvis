@@ -6,8 +6,6 @@ import argparse
 import os
 from dotenv import load_dotenv
 from faster_whisper import WhisperModel
-import threading
-import sys
 import struct
 from llms import get_model
 from stt import get_wav_file

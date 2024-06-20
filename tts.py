@@ -1,10 +1,4 @@
 import os
-import subprocess
-import signal
-from playsound import playsound
-import replicate
-import wave
-import requests
 import asyncio
 import aioconsole
 

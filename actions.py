@@ -1,5 +1,5 @@
 from datetime import datetime
-import threading
+
 
 from helpers import time_it
 from stt import transcribe_audio_file

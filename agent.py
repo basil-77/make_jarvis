@@ -1,13 +1,9 @@
-import pvporcupine
 import threading
-import struct
-import os
 import time
 import random
 
-from stt import get_wav_file, transcribe_audio_file
 from actions import answer_action, proactive_action
-from memory import dialog_history, dialog_lock
+
 
 class Agent:
 
