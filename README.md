@@ -1,10 +1,22 @@
-# make_jarvis
-ITMO. Applied LLMs. Task 2. Build Your Own Jarvis
+# ITMO. Applied LLMs. Task 2. Build Your Own Jarvis
 
 
-##Used:
+## Used:
 
 Speach-To-Text: OpenAI whisper (faster-whisper ("large-v2"), https://github.com/SYSTRAN/faster-whisper);  
 LLM: Llama3 8B Instruct (Meta-Llama-3-8B-Instruct.Q5_K_M, https://huggingface.co/QuantFactory/Meta-Llama-3-8B-Instruct-GGUF);  
-Text-To-Speach: command tool 'voice.exe' (https://www.elifulkerson.com/projects/commandline-text-to-speech.php) instead of TTS (because of using TTS or any local models takes a very lot of time). This tool uses windows system speach synthesis.
+Text-To-Speach: command tool 'voice.exe' (https://www.elifulkerson.com/projects/commandline-text-to-speech.php) instead of TTS (because of using TTS or any local models takes a very lot of time). This tool uses windows system speach synthesis and worsk very fast (but with not very good quality).
+
+## Демо:  
+[![Watch the video](https://i.stack.imgur.com/Vp2cE.png)](https://youtu.be/a9Zz6KInVIc)
+
+### Комментарии.
+Работа очень сырая, до финального вида нужно еще очено много дорабатывать, но, увы, дедлайн.  
+Что успел реализовать: почти все, что было в частях 1 и 2 записанных лекций "agent from scratch" - собственно, сам агент, распознование ключевого слова, речь в текст, работа с LLM, текст  в речь, механизм short memory.  Все модели - локальные. Была глобальная проблема с временем работы текст в речь - использовал xTTS (v1.1, v2); время обработки доходило до более 200 сек на короткое предложение (real time factor более 5.0). Вероятно это было связана с ограниченностью ресурсов - модель локально (гпу 3060 12г, остальное железо старое). Посде долгих поисков как это обойти нашел маленькую утилитку voice.exe, которая использует родной Ms system speach synthesis - время работы сократилось на один-два порядка и стало в пределах от 3-5 сек на короткие предложения (качество, конечно, не очень, но это лучше чем предыдущие 200 сек).
+Проблемы, которые остались:  
+- долгое время работы речь в текст (используется faster whisper, модель от OpenAI. До 30 сек на обробоку);  
+- проблема с обработкой второго ключевого слова. Лимит из трех слов на picovoice был потрачен на эксперименты, в итоге взял готовые ppn от товарищей, но по какой-то причине они не срабатывают. Создание второго аккаунта (с подкладыванием другого апи токена) тоже проблему не решило. Пока отключил второе слово и оставил только с одним.  
+- срабатывание ice_breaking вешает потом с распознованием ключевых слов. Точнее, он, как будто, становится "в очередь" и обработка его не начинается, пока агент не выговорится до конца. Возможно, где-то напутал с потоками, хотя старался делать как в видео;  
+- иногда почему-то не озвучиватся некоторые реплики (на демо видно). Почему - не смог найти. Возможно, дело в сочетании каких-то символов в тексте и их некорректной обработке в voice.exe
+- под конец записи видео все упало с превышением длины контекста. Видимо, надо ограничивать длину dialog_history, чтобы избегать такой ситуации.  
 

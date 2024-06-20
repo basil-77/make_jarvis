@@ -37,9 +37,9 @@ class Agent:
         #self.passive_thread.daemon = True
         #self.threads.append(self.passive_thread)
         
-        self.debug_thread = threading.Thread(target=self.memory_debug_thread)
-        self.debug_thread.daemon = True
-        self.threads.append(self.debug_thread)
+        #self.debug_thread = threading.Thread(target=self.memory_debug_thread)
+        #self.debug_thread.daemon = True
+        #self.threads.append(self.debug_thread)
         
 
     def start(self):

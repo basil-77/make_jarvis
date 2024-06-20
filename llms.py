@@ -15,7 +15,6 @@ def get_model():
 
 @time_it
 def get_answer_from_llm(model, text, st_memory=None, lt_memory=None):
-    print('memory:', st_memory)
     messages = [
         {'role': 'system', 'content': 'Твое имя София, ты - ассистент с  юмором'},
         {'role': 'user', 'content': text}
@@ -36,7 +35,6 @@ def get_answer_from_llm(model, text, st_memory=None, lt_memory=None):
     messages.append(
         {'role': 'user', 'content': text}
     )
-    print('memory end: ', messages)
     response = model.create_chat_completion(messages)
     return response["choices"][0]['message']['content'].replace('\n', '')
 

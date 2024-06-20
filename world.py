@@ -34,10 +34,10 @@ if __name__=='__main__':
     REPLICATE_API_KEY = os.getenv('REPLICATE_API_KEY')
 
     wake_keyword_path = 'wakeup/София_ru_windows_v3_0_0.ppn'
-    stop_keyword_path = 'wakeup/pomoshnik_ru_windows_v3_0_0.ppn'
+    stop_keyword_path = 'wakeup/Достаточно_ru_windows_v3_0_0.ppn'
     model_path = 'wakeup/porcupine_params_ru.pv'
     porcupine_sensivities = 0.9
-    proactive_frequency_sec = 30
+    proactive_frequency_sec = 180
     keyword2command = {
         0: 'wakeword',
         1: 'stopword'
@@ -45,9 +45,9 @@ if __name__=='__main__':
    
     porcupine = pvporcupine.create(
         access_key=api_key,
-        keyword_paths=[wake_keyword_path, stop_keyword_path],
+        keyword_paths=[wake_keyword_path], #, stop_keyword_path],
         model_path=model_path,
-        sensitivities=[porcupine_sensivities, porcupine_sensivities]
+        sensitivities=[porcupine_sensivities] #, porcupine_sensivities]
     )
 
     model_audio_transcribe = WhisperModel(model_size_or_path="large-v2", device="cuda", compute_type="float16")
@@ -99,7 +99,6 @@ if __name__=='__main__':
 
             if result >= 0:
                 agent.event({'type': keyword2command[result], 'result': result})
-                print('dialog histor: ', agent.dialog_history)
                 wav_file.close()
                 os.unlink(current_audio_file_name)
                 wav_file = get_wav_file(current_audio_file_name)
