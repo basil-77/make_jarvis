@@ -1,0 +1,8 @@
+pvporcupine==3.0.2
+pvrecorder==1.2.1
+pydub==0.25.1
+transformers==4.41.2
+tokenizers==0.19.1
+accelerate==0.31.0
+optimum==1.20.0
+numpy
